@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Wall
+  - Player_Left
+  - Player_Right
+  - Player_Top
+  - Player_Bottom
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 3053673007
+    locked: 0
+  - name: Object
+    uniqueID: 2614187353
+    locked: 0
+  - name: Player Line
+    uniqueID: 2508974793
+    locked: 0
+  - name: Player
+    uniqueID: 315019413
+    locked: 0
+  - name: Click Line
+    uniqueID: 1518837685
+    locked: 0
+  - name: BackBuilding
+    uniqueID: 1285287297
+    locked: 0
+  - name: Building
+    uniqueID: 2192816431
+    locked: 0
+  - name: Moon
+    uniqueID: 1229986731
+    locked: 0
+  - name: Clude
+    uniqueID: 4208878757
+    locked: 0
+  - name: Main
+    uniqueID: 1036524973
+    locked: 0
+  - name: Logo
+    uniqueID: 2960233389
+    locked: 0
