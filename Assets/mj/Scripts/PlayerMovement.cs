@@ -148,4 +148,13 @@ public class PlayerMovement : MonoBehaviour
             m_Anime.SetBool("b_Bottom", false);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+        }
+        Debug.Log("No");
+    }
 }

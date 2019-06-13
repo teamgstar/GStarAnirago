@@ -18,6 +18,7 @@ public class PlayerColl : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Wall")
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().OnTrigger(this.gameObject);
     }
 
