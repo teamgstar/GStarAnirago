@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerShadow : MonoBehaviour
 {
-    public void Awake(Sprite ShadowSprite)
-    {
-        this.GetComponent<SpriteRenderer>().sprite = ShadowSprite;
-    }
+    //public void Awake(Sprite ShadowSprite)
+    //{
+    //    this.GetComponent<SpriteRenderer>().sprite = ShadowSprite;
+    //}
 
     // Start is called before the first frame update
     void Start()
