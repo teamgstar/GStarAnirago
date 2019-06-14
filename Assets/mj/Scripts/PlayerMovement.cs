@@ -5,8 +5,10 @@ public class PlayerMovement : MonoBehaviour
 {
     [Tooltip("초당 해당 이동속도의 100 배수 만큼 이동합니다.")]
     public float MoveSpeed;
+    public GameObject Shadow;
 
 
+    [HideInInspector] public bool m_IsMoving;
 
     [HideInInspector] public enum PlayerStatus : byte
     {
@@ -38,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        m_IsMoving = false;
+        //  Shadow = Instantiate(Resources.Load("Assets/Prefebs/Shadow.prefab")) as GameObject;
         m_Direction = Vector2.zero;
 
         m_StartPos  = Vector2.zero;
@@ -91,6 +95,8 @@ public class PlayerMovement : MonoBehaviour
                 //버튼 터치 업
                 if (Input.GetKeyUp(KeyCode.Mouse0))
                 {
+                    StartCoroutine("SpawnShadowCoroutine");
+
                     m_Rigid.gravityScale = 1;
 
                     //애니메이션 움직이는거로 변경
@@ -124,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
                     //그다음 다시 땐상태로 enum값 되돌림
                     m_Status = PlayerStatus.PS_Idle;
+                    m_IsMoving = true;
                 }
                 break;
         }
@@ -132,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnTrigger(GameObject Child)
     {
+
         if (Child.gameObject.tag == "Player_Left")
             m_CollDir = CollDir.CD_Left;
         if (Child.gameObject.tag == "Player_Right")
@@ -155,6 +163,26 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
-        Debug.Log("No");
+        else if (collision.gameObject.tag == "Wall")
+        {
+            m_IsMoving = false;
+        }
     }
+
+    IEnumerator SpawnShadowCoroutine()
+    {
+        yield return new WaitForSeconds(0.025f);
+        for (int i = 0; i < 4; i++)
+        {
+            if (this.m_IsMoving == true)
+            {
+                GameObject CloneShadow = Shadow;
+                CloneShadow.transform.position = this.transform.position;
+                CloneShadow.GetComponent<PlayerShadow>().m_Speed = (this.MoveSpeed - i) * 2;
+                GameObject.Instantiate(CloneShadow);
+                yield return new WaitForSeconds(0.0125f);
+            }
+           }
+    }
+
 }
