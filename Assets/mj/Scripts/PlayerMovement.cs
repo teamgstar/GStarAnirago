@@ -5,8 +5,15 @@ public class PlayerMovement : MonoBehaviour
 {
     [Tooltip("초당 해당 이동속도의 100 배수 만큼 이동합니다.")]
     public float MoveSpeed;
-    public GameObject Shadow;
 
+    GameObject CloneShadow;
+
+    [HideInInspector] public bool m_bCanSpawnShadow;
+
+    public GameObject Shadow1;
+    public GameObject Shadow2;
+    public GameObject Shadow3;
+    public GameObject Shadow4;
 
     [HideInInspector] public bool m_IsMoving;
 
@@ -64,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(m_IsMoving);
         switch (m_Status)
         {
             case PlayerStatus.PS_Idle:
@@ -81,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
                     //열거형 값을 Press상태로 변경
                     m_Status = PlayerStatus.PS_Press;
+                    m_IsMoving = true;
                 }
                 break;
             case PlayerStatus.PS_Press:
@@ -95,7 +104,12 @@ public class PlayerMovement : MonoBehaviour
                 //버튼 터치 업
                 if (Input.GetKeyUp(KeyCode.Mouse0))
                 {
-                    StartCoroutine("SpawnShadowCoroutine");
+                    StartCoroutine(SpawnShadowCoroutine());
+
+                    if (m_IsMoving)
+                    {
+                        m_bCanSpawnShadow = false;
+                    }
 
                     m_Rigid.gravityScale = 1;
 
@@ -163,26 +177,43 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
-        else if (collision.gameObject.tag == "Wall")
-        {
-            m_IsMoving = false;
-        }
+        //else if (collision.gameObject.tag == "Wall")
+        //{
+        //    m_IsMoving = false;
+        //}
     }
 
     IEnumerator SpawnShadowCoroutine()
     {
-        yield return new WaitForSeconds(0.025f);
-        for (int i = 0; i < 4; i++)
+        if (m_bCanSpawnShadow)
         {
-            if (this.m_IsMoving == true)
+            for (int i = 0; i < 4; i++)
             {
-                GameObject CloneShadow = Shadow;
-                CloneShadow.transform.position = this.transform.position;
-                CloneShadow.GetComponent<PlayerShadow>().m_Speed = (this.MoveSpeed - i) * 2;
-                GameObject.Instantiate(CloneShadow);
-                yield return new WaitForSeconds(0.0125f);
+                    switch (i)
+                    {
+                        case 0:
+                            CloneShadow = Shadow1;
+                            break;
+                        case 1:
+                            CloneShadow = Shadow2;
+                            break;
+                        case 2:
+                            CloneShadow = Shadow3;
+                            break;
+                        case 3:
+                            CloneShadow = Shadow4;
+                            break;
+
+                    }
+
+                    CloneShadow.transform.position = this.transform.position;
+                    CloneShadow.GetComponent<PlayerShadow>().m_Speed = (this.MoveSpeed - i) * 2f;
+                    GameObject.Instantiate(CloneShadow);
             }
-           }
+
+            m_bCanSpawnShadow = false;
+        }
+        yield return null;
     }
 
 }

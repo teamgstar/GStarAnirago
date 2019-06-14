@@ -25,6 +25,9 @@ public class PlayerParent : MonoBehaviour
         //충돌체 태그가 벽이면
         if (collision.gameObject.tag == "Wall")
         {
+
+            m_PlayerMovement.m_IsMoving = false;
+            m_PlayerMovement.m_bCanSpawnShadow = true;
             //velocity값 0으로
             this.GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
             this.GetComponentInParent<Rigidbody2D>().gravityScale = 0;
@@ -85,6 +88,7 @@ public class PlayerParent : MonoBehaviour
                     m_Player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -180));
                 if (m_PlayerMovement.m_CollDir == PlayerMovement.CollDir.CD_Bottom)
                     m_Player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
             }
         }
 
