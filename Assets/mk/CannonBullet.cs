@@ -5,16 +5,18 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class CannonBullet : MonoBehaviour
 {
+    private float y = 1;
     // Start is called before the first frame update
     void Start()
     {
-        this.GetComponent<Rigidbody2D>().AddForce(new Vector3(200, 600, 0));
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
+        this.GetComponent<Rigidbody2D>().MovePosition((Vector2)this.transform.position + (new Vector2(1,1 + y) * GameManager.g_GameSpeed * Time.fixedDeltaTime));
+        y -= 0.02f;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

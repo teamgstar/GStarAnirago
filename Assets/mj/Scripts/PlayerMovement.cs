@@ -86,13 +86,14 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     //게임속도 느리게해주고
-                    GameManager.g_GameSpeed = 0.025f;
+                    GameManager.SetGameSpeed(0.025f);
 
                     //처음 좌표값 설정
                     m_StartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                     //기존 Velocity값에 게임속도값을 곱해서 기존 날라가고있는경우에 감속
-                    m_Rigid.velocity *= GameManager.g_GameSpeed;
+                   //
+                    //. m_Rigid.velocity *= GameManager.g_GameSpeed;
 
                     //열거형 값을 Press상태로 변경
                     m_Status = PlayerStatus.PS_Press;
@@ -132,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
                     this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
                     //게임 속도 다시 원상태로 돌려주고
-                    GameManager.g_GameSpeed = 1.0f;
+                    GameManager.SetGameSpeed(1.0f);
 
                     //기존에 날라가던 velocity 힘을 0으로     
                     m_Rigid.velocity = Vector2.zero;
@@ -142,7 +143,8 @@ public class PlayerMovement : MonoBehaviour
                     Vector2 Power = m_Direction * MoveSpeed *100* Time.fixedDeltaTime;
 
                     //AddForce로 velocity값을 증가시키면 무게의 영향을 받게되므로 직접 대입
-                    m_Rigid.velocity = Power;
+                     m_Rigid.velocity = Power;
+                   // StartCoroutine(PlayerMove(Power));
 
                     //플레이어 좌우 반전
                     if (m_Rigid.velocity.x < 0)
@@ -227,5 +229,14 @@ public class PlayerMovement : MonoBehaviour
         }
         yield return null;
     }
-
+    IEnumerator PlayerMove(Vector2 Speed)
+    {
+        while(m_IsMoving)
+        {
+           // this.transform.Translate(Speed);
+            m_Rigid.MovePosition((Vector2)this.transform.position + (Speed * GameManager.g_GameSpeed));
+            yield return new WaitForSeconds(Time.deltaTime);
+            Debug.Log("1");
+        }
+    }
 }

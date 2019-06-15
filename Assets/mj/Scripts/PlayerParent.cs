@@ -101,7 +101,7 @@ public class PlayerParent : MonoBehaviour
 
     IEnumerator CheckSameWall(Collision2D collision)
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.05f);
         if (m_OldCollider == collision)
             OnCollisionEnter2D(collision);
     }

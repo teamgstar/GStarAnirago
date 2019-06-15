@@ -32,9 +32,11 @@ public class Cannon : Enemy
         //{
 
         //}
+        //  GetComponent<BoxCollider2D>().IsTouchingLayers("zz");
+
     }
 
-    IEnumerator FireBullet()
+        IEnumerator FireBullet()
     {
         while (true)
         {
