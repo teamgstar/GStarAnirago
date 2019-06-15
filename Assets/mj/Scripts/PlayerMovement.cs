@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector] public bool m_IsMoving;
 
+    [HideInInspector] public bool b_Press;
+    [HideInInspector] public bool b_Up;
+
     [HideInInspector] public enum PlayerStatus : byte
     {
         PS_Idle, //아무것도 안누르고 있을 때
@@ -69,6 +72,9 @@ public class PlayerMovement : MonoBehaviour
 
         //애니메이션 상태 초기화
         m_Anime.SetBool("b_Move", false);
+
+        b_Press = false;
+        b_Up = false;
     }
 
     private void Update()
@@ -94,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case PlayerStatus.PS_Press:
+                b_Press = true;
                 //EndPos를 항상 커서좌표로 갱신해줘서 라인 좌표값도 갱신되게 해줌
                 m_EndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 //방향벡터 구하고 아크탄젠트 구해서 버튼 터치 다운 좌표값과 터치 업 좌표값의 각도값을 구해준다.
@@ -108,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
                 //버튼 터치 업
                 if (Input.GetKeyUp(KeyCode.Mouse0))
                 {
+                    b_Up = true;
                     StartCoroutine(SpawnShadowCoroutine());
 
                     if (m_IsMoving)

@@ -200,6 +200,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 808724412}
   m_PrefabAsset: {fileID: 0}
+--- !u!58 &167924865
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167924864}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!4 &167924868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 964806103162489012, guid: ba78df772f48faa41af7570ec8a3b262,
@@ -288,10 +304,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 20
   field of view: 60
   orthographic: 1
-  orthographic size: 5.4
+  orthographic size: 10.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -315,7 +331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611201504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.09, y: -4.14, z: -10}
+  m_LocalPosition: {x: -5.09, y: -4.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -482,10 +498,75 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 964806103162489010, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 964806103162489010, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 964806103570217662, guid: ba78df772f48faa41af7570ec8a3b262,
         type: 3}
       propertyPath: MoveSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 964806103162489013, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 964806103162489013, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 964806103162489013, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 964806103162489013, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 964806103162489013, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: d44be967a90f9954587255c36e28ba7a, type: 2}
+    - target: {fileID: 964806103162489013, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199200981796114762, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5951706523118563538, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239239763317014309, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036278468116122666, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 964806103570217648, guid: ba78df772f48faa41af7570ec8a3b262,
+        type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba78df772f48faa41af7570ec8a3b262, type: 3}

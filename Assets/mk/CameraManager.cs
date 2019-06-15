@@ -13,16 +13,20 @@ public class CameraManager : MonoBehaviour
         this.transform.position = m_Player.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Update is called once per fram
+    private void FixedUpdate()
     {
-       // this.transform.position = 
         Vector3 NewPos;
 
-        NewPos = Vector3.Lerp(new Vector3 (this.transform.position.x, this.transform.position.y,-10f), new Vector3(m_Player.transform.position.x, m_Player.transform.position.y, -10f ),Time.fixedDeltaTime * 2.5f);
+        NewPos = Vector3.Lerp(new Vector3(this.transform.position.x, this.transform.position.y, -10f), new Vector3(m_Player.transform.position.x, m_Player.transform.position.y, -10f), Time.fixedDeltaTime * 5.5f);
         m_DifferenceVector = this.transform.position - NewPos;
 
         this.transform.position = NewPos;
 
+    }
+    void Update()
+    {
+       // this.transform.position = 
+      
     }
 }
