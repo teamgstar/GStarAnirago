@@ -21,8 +21,8 @@ public class PlayerLine : MonoBehaviour
     {
         m_LineRenderer      = ClickLine.GetComponent<LineRenderer>();
         m_Render            = line.GetComponent<SpriteRenderer>();
-        m_Player = GameObject.FindWithTag("Player");
-        m_PlayerMovement = m_Player.GetComponent<PlayerMovement>();
+        m_Player            = GameObject.FindWithTag("Player");
+        m_PlayerMovement    = m_Player.GetComponent<PlayerMovement>();
 
         //라인렌더러 설정
 

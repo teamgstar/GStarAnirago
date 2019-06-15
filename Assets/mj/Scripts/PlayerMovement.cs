@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     private Camera m_Camera;
     private SpriteRenderer m_Renderer;
 
+
+
     private void Awake()
     {
         m_IsMoving = false;
@@ -71,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(m_IsMoving);
         switch (m_Status)
         {
             case PlayerStatus.PS_Idle:
@@ -95,8 +96,11 @@ public class PlayerMovement : MonoBehaviour
             case PlayerStatus.PS_Press:
                 //EndPos를 항상 커서좌표로 갱신해줘서 라인 좌표값도 갱신되게 해줌
                 m_EndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                
                 //방향벡터 구하고 아크탄젠트 구해서 버튼 터치 다운 좌표값과 터치 업 좌표값의 각도값을 구해준다.
+                m_StartPos -= Camera.main.GetComponent<CameraManager>().m_DifferenceVector;
+                m_EndPos -= Camera.main.GetComponent<CameraManager>().m_DifferenceVector;
+
+
                 m_Direction = m_EndPos - m_StartPos;
                 m_Direction.Normalize();
                 m_Rigid.gravityScale = 0;
@@ -207,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
                     }
 
                     CloneShadow.transform.position = this.transform.position;
-                    CloneShadow.GetComponent<PlayerShadow>().m_Speed = (this.MoveSpeed - i) * 2f;
+                    CloneShadow.GetComponent<PlayerShadow>().m_Speed = (this.MoveSpeed - (i + 1) * 2) * 2f;
                     GameObject.Instantiate(CloneShadow);
             }
 
